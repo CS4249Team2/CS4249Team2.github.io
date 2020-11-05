@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Logging</title>
+    <script src="paramurl.js" type="text/javascript"></script> 
+    <script src="logging.js" type="text/javascript"></script>
+    <script>
+    ageId = getQueryVariable('ageId').slice(1,getQueryVariable('ageId').length-1);
+    genderId = getQueryVariable('genderId').slice(1,getQueryVariable('genderId').length-1);
+    statusID = getQueryVariable('statusId').slice(1,getQueryVariable('statusId').length-1);
+    sendCustomEvent("EndExperiment", "dogSelected", {"age": ageId, "gender": genderId, "hdbApproved": statusID} )
+    </script>
+</head>
+<body>
+<H2>
+    You've completed the task, you may close this window and continue with the survey.
+</H2>
+
+
+<script>
+    //function clickEnd() {
+    //console.log('endclicked');
+    //sendCustomEvent("EndButtonClicked", "dogSelected", {"age": ageId, "gender": genderId, "hdbApproved": statusID} )
+    //}
+    //sendCustomEvent("EndExperiment", "dogSelected", {"age": ageId, "gender": genderId, "hdbApproved": statusID} )
+
+    //console.log("Ended experiment at %s", timestamp)
+    //console.log("Time taken (in ms): %s", timestamp - startTime)
+    //console.log("Dog selected: Age: %s, Gender: %s, HDB approved: %s",
+       // dog_data.age, dog_data.gender, dog_data.hdb_approved)
+</script>
+
+</body>
