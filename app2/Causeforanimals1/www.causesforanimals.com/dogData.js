@@ -26,10 +26,8 @@
  * - 1: find dog 'M', hdb approved and less than 4 y/o
  * - 2: find dog 'M', hdb approved and 4 - 8 y/o
  * - 3: find dog 'M', hdb approved and more than 8 y/o
-
  How I used this: randomiseDogs(chooseListSize(), values.questionId) to get dog data.
  chooseListSize() returns either Dog_Long_List/Dog_Medium_List/Dog_Short_List based on query paramters.
-
  * @param dogList
  * @param requirements
  * @returns {*}
@@ -39,9 +37,11 @@ function randomiseDogs(dogList, requirements) {
     var i
     for (i of shuffledDogList) {
         i["age"] = Math.ceil(Math.random() * 12)
+        i["date_of_birth"] = 2020 - i["age"]
     }
     for (i of shuffledDogList) {
         if (containsData(i, requirements)) {
+            console.log(shuffledDogList)
             return shuffledDogList
         }
     }
@@ -50,6 +50,7 @@ function randomiseDogs(dogList, requirements) {
         for (i of shuffledDogList) {
             if (i['gender'] === 'M' && i['hdb_approved'] === 1) {
                 i['age'] = 2
+                i["date_of_birth"] = 2020 - i["age"]
                 break
             }
         }
@@ -57,6 +58,7 @@ function randomiseDogs(dogList, requirements) {
         for (i of shuffledDogList) {
             if (i['gender'] === 'M' && i['hdb_approved'] === 1) {
                 i['age'] = 5
+                i["date_of_birth"] = 2020 - i["age"]
                 break
             }
         }
@@ -64,10 +66,12 @@ function randomiseDogs(dogList, requirements) {
         for (i of shuffledDogList) {
             if (i['gender'] === 'M' && i['hdb_approved'] === 1) {
                 i['age'] = 10
+                i["date_of_birth"] = 2020 - i["age"]
                 break
             }
         }
     }
+    console.log(shuffledDogList)
     return shuffledDogList
 }
 
@@ -1072,24 +1076,18 @@ function filterDogsSmallList(gender, ageRange, status, dogList) {
         const newDogList = dogList.filter(function (dl) {
             return dl.age < 4
         });
-        console.log("<4");
-        console.log(newDogList);
         return newDogList
     }
     else if (gender === 0 && ageRange === 2 && status === 0) {
         const newDogList = dogList.filter(function (dl) {
             return dl.age >= 4 && dl.age <= 8
         });
-        console.log("4-8");
-        console.log(newDogList);
         return newDogList
     }
     else if (gender === 0 && ageRange === 3 && status === 0) {
         const newDogList = dogList.filter(function (dl) {
             return dl.age > 8
         });
-        console.log(">8");
-        console.log(newDogList);
         return newDogList
     }
     else if (gender === 0 && ageRange === 0 && status === 1) {
