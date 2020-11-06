@@ -1101,7 +1101,37 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 		}
 		filterSelection();
 	}
+	function Endthisplease(n) {
+		console.log('last dog');
+		const statusMap = {
+        1: ",H",
+        0: ""
+    }
+		dog = filteredlist[n];
+		var innerHtmlnew = `					
+		<div class="wsite-image wsite-image-border-none " style="padding-top:10px;padding-bottom:10px;margin-left:0px;margin-right:0px;text-align:center">
+						<img src=` + filteredlist[n].image + ` alt="Picture" style="width:150;max-width:100%" />
+					<div style="display:block;font-size:90%">` + filteredlist[n].name + `</div>
+				</div>
+				<div class="paragraph" style="text-align:center;">
+					<font size="2">
+						<em style="color:rgb(81, 81, 81)">
+							` + filteredlist[n].date_of_birth + ` , ` + filteredlist[n].gender +  `
+						<br />
+						V,C,S` + statusMap[filteredlist[n].hdb_approved] + `
+						</em>
+						<br />
+						<font style="color:rgb(81, 81, 81)">
+							` + filteredlist[n].details + ` 
+						</font>
+					</font>
+				</div>
+				<div style="text-align: center; border: 1px solid">
+						<button type="button" class="center" onclick="location.href='lila.html?ageId={` + filteredlist[n].age +`}&genderId={` + filteredlist[n].gender + `}&statusId={` + filteredlist[n].hdb_approved + `}'" >Adopt Me</button>
+					</div>`;
+		$("#table").html(innerHtmlnew);
 
+	}
 	$(document).ready(function() {
 		filterSelection();
 	});
@@ -1136,10 +1166,8 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 					innerHtmlnew += `<td class="wsite-multicol-col" style="width:40%; padding:0 5px;">
 					<div class="wsite-multicol">
 					<div class="wsite-multicol">
-					<div class="wsite-image wsite-image-border-none " style="padding-top:10px;padding-bottom:10px;margin-left:0px;margin-right:0px;text-align:center">
-						<a href='lila.html?ageId={` + filteredlist[count1].age +`}&genderId={` + filteredlist[count1].gender + `}&statusId={` + filteredlist[count1].hdb_approved + `}'  target='_blank'>
-							<img src=` + filteredlist[count1].image + ` alt="Picture" style="width:150;max-width:100%" />
-						</a>
+						<div class="wsite-image wsite-image-border-none " style="padding-top:10px;padding-bottom:10px;margin-left:0px;margin-right:0px;text-align:center">
+							<img src=` + filteredlist[count1].image + ` alt="Picture" style="width:150;max-width:100%" onclick="Endthisplease( ` + count1 + `)"/>
 						<div style="display:block;font-size:90%">` + filteredlist[count1].name + `</div>
 					</div>
 					<div class="paragraph" style="text-align:center;">
