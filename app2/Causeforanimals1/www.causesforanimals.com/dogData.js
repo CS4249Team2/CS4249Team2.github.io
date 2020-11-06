@@ -43,6 +43,7 @@ function randomiseDogs(dogList, requirements) {
     }
     for (i of shuffledDogList) {
         if (containsData(i, requirements)) {
+            console.log(shuffledDogList)
             return shuffledDogList
         }
     }
@@ -72,6 +73,7 @@ function randomiseDogs(dogList, requirements) {
             }
         }
     }
+    console.log(shuffledDogList)
     return shuffledDogList
 }
 
