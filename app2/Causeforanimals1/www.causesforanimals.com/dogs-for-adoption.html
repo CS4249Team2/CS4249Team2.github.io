@@ -40,7 +40,9 @@ console.log(listLength);
 <!-- Script for filter function-->
 <script src="dogData.js" type="text/javascript"></script> 
 <script>
-	filteredlist = randomiseDogs(chooseListSize(listLength), questionId);
+	const globalList = randomiseDogs(chooseListSize(listLength), questionId);
+	filteredlist = globalList;
+	console.log('proper list');
 	console.log(filteredlist);
 	//if (listLength == 'short') {
 	//	for (i = 0; i < Dog_Small_List.length; i++) {
@@ -1000,7 +1002,7 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 
 <script>
 
-	document.addEventListener('myevent', loggingjs.sendCustomEvent, true);
+	//document.addEventListener('myevent', loggingjs.sendCustomEvent, true);
 
 
 	function filterSelection1(newgender){
@@ -1033,12 +1035,12 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 		sendCustomEvent("FilterClicked", "Gender", n);
 		gender = n;
 		if (listLength == 'short') {
-			filteredlist = filterDogsSmallList(gender,age,status,filteredlist,filteredlist);
-			console.log(filteredlist);
+			filteredlist = filterDogsSmallList(gender,age,status,globalList);
+			//console.log(filteredlist);
 		} else if (listLength == 'medium') {
-			filteredlist = filterDogsMediumList(gender,age,status,filteredlist);
+			filteredlist = filterDogsMediumList(gender,age,status,globalList);
 		} else {
-			filteredlist = filterDogsLongList(gender,age,status,filteredlist);
+			filteredlist = filterDogsLongList(gender,age,status,globalList);
 		}
 		//table = document.getElementsByClassName("wsite-multicol-table");
 		//tr = table.getElementsByClassName("wsite-multicol-tr");
@@ -1053,19 +1055,20 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 			//	}
 		//	}       
 		//}
-		console.log(filteredlist);
+		//console.log(filteredlist);
 		filterSelection();
 	}
 	function myFunctionAge(n) {
+		console.log(filteredlist);
 		console.log('myFunctionAge');
 		sendCustomEvent("FilterClicked", "Age", n)
 		age = n
 		if (listLength == 'short') {
-			filteredlist = filterDogsSmallList(gender,age,status,filteredlist);
+			filteredlist = filterDogsSmallList(gender,age,status,globalList);
 		} else if (listLength == 'medium') {
-			filteredlist = filterDogsMediumList(gender,age,status,filteredlist);
+			filteredlist = filterDogsMediumList(gender,age,status,globalList);
 		} else {
-			filteredlist = filterDogsLongList(gender,age,status,filteredlist);
+			filteredlist = filterDogsLongList(gender,age,status,globalList);
 		}
 		filterSelection();
 	}
@@ -1074,11 +1077,11 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 		sendCustomEvent("FilterClicked", "status", n)
 		status = n;
 		if (listLength == 'short') {
-			filteredlist = filterDogsSmallList(gender,age,status,filteredlist);
+			filteredlist = filterDogsSmallList(gender,age,status,globalList);
 		} else if (listLength == 'medium') {
-			filteredlist = filterDogsMediumList(gender,age,status,filteredlist);
+			filteredlist = filterDogsMediumList(gender,age,status,globalList);
 		} else {
-			filteredlist = filterDogsLongList(gender,age,status,filteredlist);
+			filteredlist = filterDogsLongList(gender,age,status,globalList);
 		}
 		filterSelection();
 	}
@@ -1089,7 +1092,6 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 
 	//////AFTER FILTER: MIGHT SELECT CORRECT DOG
 	function filterSelection() {
-		console.log("why is there so many fucking dogs");
 		console.log(filteredlist);
 		const statusMap = {
         1: ",H",

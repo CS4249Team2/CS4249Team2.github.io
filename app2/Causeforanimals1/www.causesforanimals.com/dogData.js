@@ -1072,18 +1072,24 @@ function filterDogsSmallList(gender, ageRange, status, dogList) {
         const newDogList = dogList.filter(function (dl) {
             return dl.age < 4
         });
+        console.log("<4");
+        console.log(newDogList);
         return newDogList
     }
     else if (gender === 0 && ageRange === 2 && status === 0) {
         const newDogList = dogList.filter(function (dl) {
             return dl.age >= 4 && dl.age <= 8
         });
+        console.log("4-8");
+        console.log(newDogList);
         return newDogList
     }
     else if (gender === 0 && ageRange === 3 && status === 0) {
         const newDogList = dogList.filter(function (dl) {
             return dl.age > 8
         });
+        console.log(">8");
+        console.log(newDogList);
         return newDogList
     }
     else if (gender === 0 && ageRange === 0 && status === 1) {
