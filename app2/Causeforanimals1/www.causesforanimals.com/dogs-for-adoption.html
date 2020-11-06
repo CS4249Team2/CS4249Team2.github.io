@@ -1060,6 +1060,7 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 	}
 	function myFunctionAge(n) {
 		console.log(filteredlist);
+		console.log(globalList);
 		console.log('myFunctionAge');
 		sendCustomEvent("FilterClicked", "Age", n)
 		age = n
@@ -1085,6 +1086,21 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 		}
 		filterSelection();
 	}
+	function myFunctionShowAll() {
+		console.log('myFunctionShowAll');
+		sendCustomEvent("FilterClicked", "ShowAll", 0)
+		status = 0;
+		gender = 0;
+		age = 0;
+		if (listLength == 'short') {
+			filteredlist = filterDogsSmallList(gender,age,status,globalList);
+		} else if (listLength == 'medium') {
+			filteredlist = filterDogsMediumList(gender,age,status,globalList);
+		} else {
+			filteredlist = filterDogsLongList(gender,age,status,globalList);
+		}
+		filterSelection();
+	}
 
 	$(document).ready(function() {
 		filterSelection();
@@ -1097,18 +1113,19 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
         1: ",H",
         0: ""
     }
-		console.log("zzz");
 		var gender = 'M';
 		var innerHtmlnew = '';
 			console.log('i');
-
-		
 		var count1 = 0; //calculates which index we are at 
 		//var count2 = 0;
 		innerHtmlnew += `
 		<div id="table" class="wsite-multicol-table-wrap" style="margin:0 -15px;">
 		<table id="table1" class="wsite-multicol-table"> `;
-		console.log(2);
+		console.log(filteredlist);
+		console.log("test");
+		if (filteredlist.length == 0) {
+			$("#table").html(innerHtmlnew);
+		} else {
 		for (i = 0; i < filteredlist.length/4; i++  ) {
 			//innerHtmlnew += `<tr class="wsite-multicol-tr">`;
 			innerHtmlnew = innerHtmlnew + `<tr class="wsite-multicol-tr">`;
@@ -1141,6 +1158,7 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 				</div>`
 				count1 ++;
 				;}
+			}
 		}
 		//console.log(innerHtmlnew);
 		//document.getElementsByClassName("wsite-multicol-table-wrap").innerHTML = innerHTMLnew;
@@ -1152,6 +1170,7 @@ _W.setup_model_rpc({"rpc_namespace":"_W.CustomerAccounts.RPC","model_namespace":
 </script>
 <div id="myBtnContainer">
 	<p1> Filters:  </p1>
+	<button type = "button" class="button" onclick="myFunctionShowAll()">Show All</button> 
 	<div class="btn-group d-inline-block">
 		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-labelledby="dropdownMenu2">Gender</button>
 		<div class="dropdown-menu">
