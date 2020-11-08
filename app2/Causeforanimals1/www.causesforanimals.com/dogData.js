@@ -84,19 +84,20 @@ function chooseListSize(listLength) {
         return filterDogsLongList(0,0,0, Dog_Long_List)
     }
 }
+
 function containsData(i, requirements) {
     if (requirements === 1) {
-        if (i["age"] < 4) {
+        if (i["age"] < 4 && i["hdb_approved"] === 1) {
             return true
         }
         return false
     } else if (requirements === 2) {
-        if (i["age"] >=4 && i["age"] <= 8) {
+        if (i["age"] >=4 && i["age"] <= 8 && i["hdb_approved"] === 1) {
             return true
         }
         return false
     } else if (requirements === 3) {
-        if (i["age"] > 8) {
+        if (i["age"] > 8 && i["hdb_approved"] === 1) {
             return true
         }
         return false
